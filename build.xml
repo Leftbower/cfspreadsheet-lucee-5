@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cfspreadsheet-lucee-5" default="zip" basedir=".">
+	<property name="project-name" value="${ant.project.name}" />
+	<property name="folder-to-zip" value="extension" />
+	
+	<property name="tmp.dir" value="tmp" />
+
+	<target name="clean">
+		<delete file="${project-name}.lex" />
+		<antcall target="cleanZips" />
+	</target>
+
+	<target name="zip">
+		<echo message="Putting the project zips into a master zip file"/>
+		<zip destfile="${project-name}.lex" basedir="${folder-to-zip}" />
+	</target>
+	
+	<target name="cleanZips">
+		<delete>
+			<fileset dir="${project-name}/" includes="*.lex"/>
+		</delete>
+	</target>
+
+</project>
