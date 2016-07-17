@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="cfspreadsheet-lucee-5" default="zip" basedir=".">
+<project name="cfspreadsheet-lucee-5" default="all" basedir=".">
 	<property name="project-name" value="${ant.project.name}" />
-	<property name="folder-to-zip" value="extension" />
-	
-	<property name="tmp.dir" value="tmp" />
+	<property name="archive-folder" value="extension/archives/" />
+	<property name="project-folder-to-zip" value="extension" />
+	<property name="lar-name" value="cfspreadsheet" />
+	<property name="lar-folder-to-zip" value="lar" />
+
+	<target name="all" depends="clean, zip-lar, zip-lex"/>
 
 	<target name="clean">
+		<echo message="Cleaning existing .lar and .lex files..." />
 		<delete file="${project-name}.lex" />
-		<antcall target="cleanZips" />
+		<delete file="${archive-folder}${project-name}.lar" />
 	</target>
 
-	<target name="zip">
-		<echo message="Putting the project zips into a master zip file"/>
-		<zip destfile="${project-name}.lex" basedir="${folder-to-zip}" />
-	</target>
-	
-	<target name="cleanZips">
-		<delete>
-			<fileset dir="${project-name}/" includes="*.lex"/>
-		</delete>
+	<target name="zip-lar">
+		<echo message="Package cfc and mapping into .lar and put in archives folder" />
+		<zip destfile="${archive-folder}${project-name}.lar" basedir="${lar-folder-to-zip}" />
 	</target>
 
+	<target name="zip-lex">
+		<echo message="Package the project into master .lex file." />
+		<zip destfile="${project-name}.lex" basedir="${project-folder-to-zip}" />
+	</target>
 </project>

@@ -1,11 +1,11 @@
-Manifest-Version: 1.1
+Manifest-Version: 1.2
 id: "037A27FF-0B80-4CBA-B954BEBD790B460E"
-version: "1.1.0.0"
+version: "1.2.0.0"
 name: "cfspreadsheet"
-description: "A spreadsheet extension for Lucee 5.x"
+description: "A spreadsheet extension for Lucee 5"
 category: Application
-Built-Date: 2016-07-16 12:33:00
+Built-Date: 2016-07-17 02:11:00
 lucee-core-version: "5.0.0.252"
 lucee-loader-version: "5.9"
-release-type: server
+release-type: all
 start-bundles: false
