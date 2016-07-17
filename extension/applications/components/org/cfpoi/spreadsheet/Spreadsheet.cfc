@@ -9,19 +9,7 @@
 	<cffunction name="loadPoi" access="private" output="false" returntype="any">
 		<cfargument name="javaclass" type="string" required="true" hint="I am the java class to be loaded" />
 
-		<cfscript>
-			var context = (findNoCase(expandPath('{lucee-server-directory}'), getCurrentTemplatePath(), 0) neq 0 )?'server':'web';
-
-			local.paths = arrayNew(1);
-			// This points to the jar we want to load. Could also load a directory of .class files
-			arrayAppend(Local.paths, expandPath('{lucee-#context#-directory}'&'/lib/poi-3.11-20141221.jar'));
-			arrayAppend(Local.paths, expandPath('{lucee-#context#-directory}'&'/lib/poi-ooxml-3.11-20141221.jar'));
-			arrayAppend(Local.paths, expandPath('{lucee-#context#-directory}'&'/lib/poi-ooxml-schemas-3.11-20141221.jar'));
-			arrayAppend(Local.paths, expandPath('{lucee-#context#-directory}'&'/lib/xmlbeans-2.6.0.jar'));
-			arrayAppend(Local.paths, expandPath('{lucee-#context#-directory}'&'/lib/poi-export-utility.jar'));
-				
-			return createObject("java", javaclass, local.paths.toList());
-		</cfscript>
+		<cfreturn createObject("java", javaclass, "cfspreadsheet", "1.0.0")>
 	</cffunction>
 
 	<!--- CONSTRUCTOR --->
@@ -367,8 +355,8 @@
 		<cfargument name="imageData" type="any" required="false" />
 		<cfargument name="imageType" type="string" required="false" />
 		<cfargument name="anchor" type="string" required="true" />
-
-		<cfset var toolkit = loadPOI("java.awt.Toolkit") />
+		
+		<cfset var toolkit = createObject("java", "java.awt.Toolkit") />
 		<!--- For some reason calling creationHelper.createClientAnchor() bombs with a 'could not instantiate object'
 				error, so we'll create the anchor manually later. Just leaving this in here in case it's worth another
 				look. --->
@@ -432,7 +420,7 @@
 		</cfswitch>
 
 		<cfif StructKeyExists(arguments, "filepath") and StructKeyExists(arguments, "anchor")>
-			<cfset inputStream = loadPOI("java.io.FileInputStream").init(JavaCast("string", arguments.filepath)) />
+			<cfset inputStream = createObject("java", "java.io.FileInputStream").init(JavaCast("string", arguments.filepath)) />
 			<cfset bytes = ioUtils.toByteArray(inputStream) />
 			<cfset inputStream.close() />
 		<cfelse>
@@ -711,7 +699,7 @@
 	<cffunction name="readBinary" access="public" output="false" returntype="binary"
 			hint="Returns a binary representation of the file">
 
-		<cfset var baos = loadPOI("org.apache.commons.io.output.ByteArrayOutputStream").init() />
+		<cfset var baos = createObject("java", "org.apache.commons.io.output.ByteArrayOutputStream").init() />
 		<cfset getWorkBook().write( baos ) />
 		<cfset baos.flush()>
 
@@ -2349,8 +2337,8 @@
 
 		<cfscript>
 			// load the workbook from disk
-			Local.input 	= loadPoi("java.io.FileInputStream").init( arguments.src );
-			Local.buffered 	= loadPoi("java.io.BufferedInputStream").init( Local.input );
+			Local.input 	= createObject("java", "java.io.FileInputStream").init( arguments.src );
+			Local.buffered 	= createObject("java", "java.io.BufferedInputStream").init( Local.input );
 			Local.workbookFactory = loadPoi("org.apache.poi.ss.usermodel.WorkbookFactory");
 			Local.workbook 	= Local.workbookFactory.create( Local.buffered );
 			Local.input.close();
@@ -2882,7 +2870,7 @@
 			var nextValue = "";
 			var isEmbeddedValue = false;
 			var values = [];
-			var buffer = loadPOI("java.lang.StringBuilder").init();
+			var buffer = createObject("java", "java.lang.StringBuilder").init();
 			var maxElem = arrayLen(elements);
 
 			for (var i = 1; i <= maxElem; i++) {
@@ -2972,7 +2960,7 @@
 			// more complex method of using an AttributedString and TextLayout
 			Local.defaultFont = getWorkBook().getFontAt(0);
 			Local.style = getAWTFontStyle( Local.defaultFont );
-			Local.Font = loadPOI("java.awt.Font");
+			Local.Font = createObject("java", "java.awt.Font");
 			Local.javaFont = Local.Font.init( Local.defaultFont.getFontName()
 													, Local.style
 													, Local.defaultFont.getFontHeightInPoints()
@@ -2990,7 +2978,7 @@
 		hint="Transforms a POI Font ">
 		<cfargument name="poiFont" type="any" required="true" />
 		<cfscript>
-			Local.Font = loadPOI("java.awt.Font");
+			Local.Font = createObject("java", "java.awt.Font");
 			Local.isBold = arguments.poiFont.getBoldweight() == arguments.poiFont.BOLDWEIGHT_BOLD;
 
 			if (Local.isBold && arguments.poiFont.getItalic()) {
