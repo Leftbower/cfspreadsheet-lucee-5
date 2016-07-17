@@ -8,5 +8,5 @@
 1. Add a mapping as follows: Lucee Server Admin > Archives & Resources > Components: Go to "Create new Additional Resource" and add a name and under resource put "{lucee-server}/components/". Save with default settings.
 
 ##Notes:
-1. Uninstall does not currently remove poi jars from lib folder nor the files installed into components directory in lucee-server.
-1. Currently only working as a server extension until LDEV-797 is fixed.
+1. Uninstall does not currently remove files installed into components directory in lucee-server.
+1. Currently only working as a server extension until LDEV-797 is fixed (installing to `components` directory not supported yet in Lucee web context).
