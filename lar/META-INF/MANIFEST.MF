@@ -6,9 +6,9 @@ Bundle-SymbolicName: 1mz0ez85r04pz
 mapping-top-level: true
 Require-Bundle: lucee.core
 Bundle-ManifestVersion: 2
-mapping-virtual-path: /org.cfpoi.spreadsheet.Spreadsheet
+mapping-virtual-path: /cfspreadsheet
 mapping-readonly: false
 mapping-hidden: false
 mapping-physical-first: true
-Bundle-Name: org.cfpoi.spreadsheet.Spreadsheet
-Bundle-Version: 1.0.0.1cmza3t87ny60
+Bundle-Name: cfspreadsheet
+Bundle-Version: 1.0.0.7r9hb4lva6ec
