@@ -3,7 +3,7 @@
 	<property name="project-name" value="${ant.project.name}" />
 	<property name="archive-folder" value="extension/archives/" />
 	<property name="project-folder-to-zip" value="extension" />
-	<property name="lar-name" value="cfspreadsheet" />
+	<property name="lar-name" value="org.cfpoi.spreadsheet.Spreadsheet" />
 	<property name="lar-folder-to-zip" value="lar" />
 
 	<target name="all" depends="clean, zip-lar, zip-lex"/>
@@ -11,12 +11,12 @@
 	<target name="clean">
 		<echo message="Cleaning existing .lar and .lex files..." />
 		<delete file="${project-name}.lex" />
-		<delete file="${archive-folder}${project-name}.lar" />
+		<delete file="${archive-folder}${lar-name}.lar" />
 	</target>
 
 	<target name="zip-lar">
 		<echo message="Package cfc and mapping into .lar and put in archives folder" />
-		<zip destfile="${archive-folder}${project-name}.lar" basedir="${lar-folder-to-zip}" />
+		<zip destfile="${archive-folder}${lar-name}.lar" basedir="${lar-folder-to-zip}" />
 	</target>
 
 	<target name="zip-lex">
