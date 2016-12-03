@@ -9,7 +9,7 @@
 	<cffunction name="loadPoi" access="private" output="false" returntype="any">
 		<cfargument name="javaclass" type="string" required="true" hint="I am the java class to be loaded" />
 
-		<cfreturn createObject("java", javaclass, "cfspreadsheet", "3.0.0")>
+		<cfreturn createObject("java", javaclass, "cfspreadsheet", "3.0.1")>
 	</cffunction>
 
 	<!--- CONSTRUCTOR --->

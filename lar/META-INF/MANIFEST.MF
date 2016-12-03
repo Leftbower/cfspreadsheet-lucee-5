@@ -11,4 +11,4 @@ mapping-readonly: false
 mapping-hidden: false
 mapping-physical-first: true
 Bundle-Name: cfspreadsheet
-Bundle-Version: 1.0.0.7r9hb4lva6ec
+Bundle-Version: 1.0.0.1q4cgun7t1cgi
