@@ -9,5 +9,5 @@
 
 ## Notes:
 1. Works for both the server or an individual web context.
-1. Uninstall does not currently remove the .lar file installed into archives directory.
-1. Installing into the web-context components directory currently not supported in Lucee 5, so the component cfc is bundled into a .lar with component mapping.
+1. Uninstall does not currently remove the `.lar` file installed into archives directory.
+1. Installing into the web-context components directory currently not supported in Lucee 5, so the component cfc is bundled into a `.lar` with component mapping.
