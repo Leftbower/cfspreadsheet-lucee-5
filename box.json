@@ -2,7 +2,7 @@
     "name":"cfspreadsheet",
     "version":"3.0.3",
     "author":"Andrew Kretzer",
-    "location":"https://github.com/Leftbower/cfspreadsheet-lucee-5/raw/master/cfspreadsheet-lucee-5.lex",
+    "location":"https://github.com/Leftbower/cfspreadsheet-lucee-5/raw/master/cfspreadsheet-lucee-5.zip",
     "slug":"037A27FF-0B80-4CBA-B954BEBD790B460E",
     "description":"A spreadsheet extension for Lucee 5",
     "type":"lucee-extensions",
