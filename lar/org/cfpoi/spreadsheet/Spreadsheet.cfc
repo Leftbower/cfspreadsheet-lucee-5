@@ -355,6 +355,7 @@
 		<cfargument name="imageData" type="any" required="false" />
 		<cfargument name="imageType" type="string" required="false" />
 		<cfargument name="anchor" type="string" required="true" />
+		<cfargument name="type" type="string" required="false" default="simple" />
 		
 		<cfset var toolkit = createObject("java", "java.awt.Toolkit") />
 		<!--- For some reason calling creationHelper.createClientAnchor() bombs with a 'could not instantiate object'
@@ -428,8 +429,12 @@
 		</cfif>
 
 		<cfset imageIndex = getWorkbook().addPicture(bytes, JavaCast("int", imgTypeIndex)) />
-
-		<cfset theAnchor = loadPoi("org.apache.poi.hssf.usermodel.HSSFClientAnchor").init() />
+		
+		<cfif structkeyexists(arguments,'type') and arguments.type eq 'xml'>
+			<cfset theAnchor = loadPoi("org.apache.poi.xssf.usermodel.XSSFWorkbook").init() />
+		<cfelse>
+			<cfset theAnchor = loadPoi("org.apache.poi.hssf.usermodel.HSSFClientAnchor").init() />
+		</cfif>
 
 		<cfif ListLen(arguments.anchor) eq 4>
 			<!--- list is in format startRow, startCol, endRow, endCol --->
