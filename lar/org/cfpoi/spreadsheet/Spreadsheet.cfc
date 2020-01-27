@@ -1169,11 +1169,13 @@
 		<cfargument name="rowNum" type="numeric" required="true" />
 
 		<cfset Local.theRow = getActiveSheet().getRow(arguments.rowNum - 1) />
+		<cfset Local.style = buildCellStyle(arguments.format) />
+		
 		<!--- there is nothing to do if the row does not exist ... --->
 		<cfif not IsNull( Local.theRow )>
 			<cfset Local.cellIterator = Local.theRow.cellIterator() />
 			<cfloop condition="#Local.cellIterator.hasNext()#">
-				<cfset formatCell(arguments.format, arguments.rowNum, Local.cellIterator.next().getColumnIndex() + 1) />
+				<cfset formatCell(arguments.format, arguments.rowNum, Local.cellIterator.next().getColumnIndex() + 1), Local.style />
 			</cfloop>
 		</cfif>
 
@@ -1533,9 +1535,11 @@
 						detail="The column value must be greater than 0." />
 		</cfif>
 
+	  <cfset Local.style = buildCellStyle(arguments.format) />
+
 		<cfloop condition="#rowIterator.hasNext()#">
 			<!--- Note: If the cells are not contigous, this will create the missing cells ie fill in the gaps --->
-			<cfset formatCell(arguments.format, rowIterator.next().getRowNum() + 1, arguments.column) />
+			<cfset formatCell(arguments.format, rowIterator.next().getRowNum() + 1, arguments.column, Local.style ) />
 		</cfloop>
 	</cffunction>
 
