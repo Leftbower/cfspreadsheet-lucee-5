@@ -1,6 +1,6 @@
 Manifest-Version: 2.0
 id: "037A27FF-0B80-4CBA-B954BEBD790B460E"
-version: "3.0.3"
+version: "3.0.4"
 name: "cfspreadsheet"
 description: "A spreadsheet extension for Lucee 5"
 category: Application
